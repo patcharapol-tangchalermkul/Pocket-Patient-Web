@@ -1,0 +1,79 @@
+.main-box {
+  display: flex;
+  justify-content: center;
+}
+
+.back-button-box {
+  position: absolute;
+  top: 3%;
+  left: 23%;
+  width: 10%;
+}
+
+.back-button-box > a > button {
+  font-weight: 700;
+  color: white;
+  border: none;
+  padding: 5px 2em;
+  box-shadow: 1px 1px 4px var(--dark-shade-color);
+}
+
+#main-box-wrapper {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+#add-new-medication-title {
+  width: 100%;
+}
+
+#add-new-medication-title h1 {
+  font-size: 3em;
+}
+
+.add-entry-form {
+  flex-grow: 1;
+  padding-bottom: 3em !important;
+}
+
+.add-medication {
+  font-size: 1.5em;
+  display: flex;
+  width: 100%;
+}
+
+.add-medication label {
+  margin-right: 1em;
+  width: 30%;
+}
+
+#duration-inputs input {
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-bottom: .4em !important;
+}
+
+#duration-inputs select {
+  text-align: center;
+}
+
+#add-medication-duration {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+#route-selection-box {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+#duration-inputs {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+}

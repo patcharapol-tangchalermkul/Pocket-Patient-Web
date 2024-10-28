@@ -1,0 +1,31 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'patientOnCall/imaging.css' %}"></link>
+</head>
+
+<body>
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div class="imaging-main-box" class="p-3">
+    <div class="p-3" id="main-imaging-box">
+      <div id="main-imaging-box-headers">
+        <h2 class="section-header">Imaging History:</h2>
+      </div>
+
+      <div class="scan-name" id="MRI-btn">MRI</div>
+      <div class="scan-name" id="PET-btn">PET</div>
+      <div class="scan-name" id="X-Ray-btn">X-Ray</div>
+      <div class="scan-name" id="ECG-btn">ECG</div>
+      <div class="scan-name" id="CT-btn">CT</div>
+      <div class="scan-name" id="Ultrasound-btn">Ultrasound</div>
+      <div class="scan-name" id="Medical-Photography-btn">Medical Photography</div>
+    </div>
+  </div>
+    <script src="{% static 'patientOnCall/imaging.js' %}"></script>
+</body>
+{% endblock %}

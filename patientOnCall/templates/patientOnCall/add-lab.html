@@ -1,0 +1,46 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+   <link rel="stylesheet" href="{% static 'patientOnCall/add-lab.css' %}"></link>  
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+</head>
+<body> 
+  {% comment %} <div class="invisible" id="patient-data-box"></div> {% endcomment %}
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div class="back-button-box">
+    <a id="back-to-scan-type" href="">
+      <button class="green-btn">back</button>
+    </a>
+  </div>
+
+  <h4 class="section-header">Add Lab Entry</h4>
+    <form action="" class="pb-5 add-entry-form" id="patient-lab-history-add-entry" method="POST" enctype ="multipart/form-data">
+      {% csrf_token %}
+      <div class="add-history pt-1">
+        <label class="mr-2" for="entry-report-date">Date of Report:</label>
+        <p class="form-control" name="entry-report-date" type="date">{{form.date}}</p>
+      </div>
+      <div class="add-history pt-1">
+        <label for="entry-lab-type">Lab Type:</label>
+        <p class="form-control" name="entry-lab-type">{{form.labType}}</p>   
+      </div>
+      <div class="add-history pt-1">
+        <label for="entry-report">Upload Report:</label>
+        <p class="form-control" name="entry-report">{{form.report}}</p>   
+      </div>
+      <div id="add-button-wrapper"></div>
+        <input class="add-button" type="submit" value="Save" id="add-visit">
+      </div>
+    </form> 
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+    <script src="{% static 'patientOnCall/add-lab.js' %}"></script> 
+  </body>  
+  {% endblock %}

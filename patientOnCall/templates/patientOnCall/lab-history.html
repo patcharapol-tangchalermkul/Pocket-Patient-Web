@@ -1,0 +1,31 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'patientOnCall/lab-history.css' %}"></link>
+</head>
+<body>
+    <div class="container-fluid p-3 mb-3 patient-identity">
+        <h1 id="patient-name"></h1>
+        <h2 id="patient-id"></h2>
+    </div>
+    <div id="lab-history-and-presentation-box">
+        <div class="p-3" id="main-lab-history-box">
+            <h2 class="section-header">Lab History:</h2>
+            <div class="lab-history-entries">
+                <ul class="p-3 ml-3 mb-3" id="lab-history-entries">
+                    <li class="lab-history-entry" id="fbc-btn">Full Blood Count Report</li>
+                    <li class="lab-history-entry" id="cancer-btn">Cancer Blood Test</li>
+                    <li class="lab-history-entry" id="electrolyte-btn">Electrolyte Test</li>
+                    <li class="lab-history-entry" id="genetic-btn">Genetic Test</li>
+                    <li class="lab-history-entry" id="liver-btn">Liver Function Test</li>
+                    <li class="lab-history-entry" id="thyroid-btn">Thyroid Function Test</li>
+    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'patientOnCall/lab-history.js' %}"></script>
+</body>
+{% endblock %}

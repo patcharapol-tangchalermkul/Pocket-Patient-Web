@@ -1,0 +1,227 @@
+:root {
+  --info-bg-color: #73C1D2;
+  --info-darker-bg-color: #239DB8;
+  --info-lighter-bg-color: #CBEDF4;
+  --dark-shade-color: rgba(0, 0, 0, 0.7);
+  --table-background-colour: #DBE2E3;
+  --dark-red-colour: #D91313;
+  --light-red-colour: #efa3a3;
+}
+
+.window-box {
+  display: flex;
+  flex-direction: row;
+  /* max-height: 100vh; */
+  height: 100;
+  width: 100%; 
+  position: fixed;
+  overflow-x: hidden;
+  
+}
+
+.main-box {
+  width: 100%; 
+  display: inline-block;
+  height: 100vh;
+  margin-left: 20%;
+}
+
+#sidebar {
+  padding-top: 2%;
+  max-width: 20%;
+  min-width: 200px;
+  height: 100vh; 
+  display: inline-block;
+  background-color: var(--info-bg-color);
+  margin: 0;
+  position: fixed; 
+}
+
+#home-btn-wrapper {
+  padding-left: 2.5em;
+  transition: transform 0.1s;
+}
+
+#home-btn-wrapper img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.sidebar-components {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#return-to-search-btn-wrapper {
+  margin-bottom: 2em !important;
+}
+
+#return-to-search-btn {
+  background-color: var(--info-darker-bg-color);
+  color: white;
+  border: none;
+  padding: 0.3em 1em;
+  border-radius: 15px;
+  width: 80%;
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-weight: bold;
+}
+
+#return-to-search-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 2px 2px 4px var(--dark-shade-color);
+}
+
+.sidebar-option {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 0.7em;
+  margin-right: 0.05em; 
+  margin-left: 0.05em; 
+}
+
+@media only screen and (max-width: 1400px) {
+  .sidebar-option {
+  font-size: 1.3em;
+  }
+}
+
+.sidebar-option a {
+  text-decoration: none;
+  color: var(--dark-shade-color);
+  font-weight: 500;
+  padding: 0.2em;
+  display: inline-block;
+}
+
+.sidebar-option a:hover {
+  color: white;
+  text-decoration: underline;
+  transition: all 0.1s;
+}
+
+#disclaimer-note {
+  max-width: 100%;
+  padding: .5em;
+  border-radius: 15px;
+  border: 3px solid var(--dark-red-colour);
+  color: var(--dark-red-colour);
+  margin: 1em;
+  margin-top: 35%;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.info-table {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
+  margin-top: 1em;
+  margin-bottom: .3em;
+  border: 1px solid black;
+  max-width: 100%;
+}
+
+.info-table-label {
+  font-weight: 600;
+}
+
+.info-table-item {
+  text-align: center;
+  background-color: var(--table-background-colour);
+  border: 1px solid black;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.red-btn {
+  background-color: #E27CA1;
+}
+
+.green-btn {
+  background-color: #A1DADE;
+}
+
+.add-button-box {
+  text-align: center;
+}
+
+.add-button {
+  background-color: var(--info-darker-bg-color);
+  color: white;
+  border: none;
+  padding: auto;
+  border-radius: 15px;
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+  padding: 1% 1%;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+
+.section-header {
+  font-size: 50px;
+  text-align: center;
+}
+
+.section-header-small {
+  font-size: 40px;
+  text-align: center;
+}
+
+.patient-identity {
+  background-color: #DBF1F5;
+  width: 40%;
+  height: 120px;
+  margin: 1em;
+  padding: 0.3em;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,.5);
+}
+
+.add-entry-form {
+  margin-left: 10%;
+}
+
+.add-history {
+  padding: 10px;
+  max-width: 900px;
+}
+.add-history label{
+  font-weight: bold;
+  font-size: large;
+}
+
+.add-history input{
+  text-align: left;
+  padding: 10px;
+  clear: both;
+  border: 0px; 
+}
+
+.edit-entry {
+  background-color: #DBF1F5;
+  height:100%;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,.5);
+}
+
+.back-button-box {
+  width: 15%;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-button-box > a > button {
+  font-weight: 700;
+  color: white;
+  border: none;
+  padding: 5px 2em;
+  box-shadow: 1px 1px 4px var(--dark-shade-color);
+}
+
+

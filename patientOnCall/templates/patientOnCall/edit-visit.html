@@ -1,0 +1,199 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+   <link rel="stylesheet" href="{% static 'patientOnCall/add-visit.css' %}"></link>  
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+</head>
+<body> 
+  {% comment %} <div class="invisible" id="patient-data-box"></div> {% endcomment %}
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div class="" id="button-bar">
+    <a href="/visit/">
+      <button class="green-btn" id="back-to-visit">back</button>
+    </a>
+    <a id="edit-button" href="">
+      <button class="green-btn" id="edit-visit">edit</button>
+    </a>
+  </div>
+  <h4 class="section-header"></h4>
+  <div class="pb-5 add-entry-form" >
+    <div class="add-history pt-1">
+      <label for="entry-visit-type">Visit Type:</label>
+      <p id="entry-visit-type"></p>   
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-admission-date" id="admission-date-label">Admission Date:</label>
+      <p id="entry-admission-date" type="date"></p>
+    </div>
+    <div class="add-history pt-1" id="discharge-date-wrapper">
+      <label class="mr-2" for="entry-discharge-date">Discharge Date:</label>
+      <p id="entry-discharge-date" type="date"></p>
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-consultant">Consultant:</label>
+      <p id="entry-consultant" type="text"></p> 
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-practice-name">Name of practice:</label> 
+        <p>St Mary's Hospital</p>  
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-address">Address of practice:</label> 
+        <p>12 Smith Street, AB 321 London.</p>  
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-summary">Summary:</label>
+      <p id="entry-summary"></p>   
+    </div>
+    <div class="add-history pt-1" id="entry-letter-wrapper">
+      <label>Letter:</label>
+      <!-- <a id="entry-letter"></a> -->
+      <div id="entry-letter"></div>    
+      <form id="upload-letter-form" method="POST" action="" enctype ="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="letter" id="letter-upload">
+        <input type="submit" value="Upload Letter"></input>
+      </form>
+      <!-- <input class="add-option" type="submit" id="upload-letter" value="Upload Letter"> -->
+    </div>
+    
+    <div class="add-history pt-1">
+      <label for="entry-add-to-medical-history">Add discharge summary to medical history:</label>
+      <input type="checkbox" onclick="return false;" id="entry-add-to-medical-history" checked=""></input>
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-lab-report">Lab Reports:</label>
+      <!-- <p class="form-control" name="entry-lab-report"></p>    -->
+      <input class="add-option" type="submit" id="add-lab" value="Add Lab">
+      <div id="entry-lab-histories"></div>
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-imaging-report">Imaging Reports:</label>
+      <!-- <button class="edit-entry" id="add-imaging">Add Imaging</button>   -->
+      <input class="add-option" type="submit" id="add-imaging" value="Add Imaging">
+      <div id="entry-imaging-histories"></div>
+    </div>
+    <!-- <input class="add-button" type="submit" value="Save" id="add-visit"> -->
+  </div>
+  
+  <script>
+    var isLabCreated = "{{ labCreated }}";
+    var newLabId = "{{ id }}";
+    var newLabDate = "{{ date }}";
+    var newLabType = "{{ labType }}";
+    var newLabReport = "{{ report }}";
+    var newLabVisitEntry = "{{ visitEntry }}";
+
+    var isScanCreated = "{{ scanCreated }}"
+    var newImagingHistoryId = "{{ id }}";
+    var newImagingHistoryDate = "{{ date }}";
+    var newImagingHistoryScanType = "{{ scanType }}";
+    var newImagingHistoryRegion = "{{ region }}"
+    var newImagingHistoryIndication = "{{ indication }}"
+    var newImagingHistoryReport = "{{ report }}"
+    var newImagingHistoryVisitEntry  = "{{ visitEntry }}"
+
+    if ("{{ labCreated }}") {
+      let labHistory = JSON.parse(sessionStorage.getItem("labHistory"))
+      // labHistory.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      // sessionStorage.setItem("labHistory",JSON.stringify(labHistory))
+  
+      if ("{{ id }}"==="") {
+        console.log("no")
+      } else {
+        let newLabHistory = {}
+        newLabHistory["id"]= "{{ id }}";
+        newLabHistory["date"]= "{{ date }}";
+        newLabHistory["labType"]= "{{ labType }}";
+        newLabHistory["report"]= "{{ report }}"
+        newLabHistory["visitEntry"] = "{{ visitEntry }}"
+  
+  
+        labHistory.push(newLabHistory)
+        labHistory.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  
+        sessionStorage.setItem("labHistory",JSON.stringify(labHistory))
+      }
+    } else if ("{{scanCreated}}") {
+      let imagingHistory = JSON.parse(sessionStorage.getItem("imagingHistory"))
+      let imagingUploads = JSON.parse(sessionStorage.getItem("imagingUploads"))
+      imagingHistory.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      sessionStorage.setItem("imagingHistory",JSON.stringify(imagingHistory))
+
+      if ("{{ id }}"==="") {
+        console.log("no")
+      } else {
+        let newImagingHistory = {}
+
+        var imgURLs = "{{ image }}"
+        const imgArr = imgURLs.split(',')
+        // console.log(imgArr)
+        for(var i = 0; i < imgArr.length; i++)
+          {
+            imgArr[i] = imgArr[i].replace("&#x27;", "");
+            imgArr[i] = imgArr[i].replace("&#x27;", "");
+            imgArr[i] = imgArr[i].replace("[", "");
+            imgArr[i] = imgArr[i].replace("]", "");
+            imgArr[i] = imgArr[i].replace(" ", "");
+          }
+      
+        // console.log(imgArr)
+        newImagingHistory["id"]= "{{ id }}";
+        newImagingHistory["date"]= "{{ date }}";
+        newImagingHistory["scanType"]= "{{ scanType }}";
+        newImagingHistory["region"]= "{{ region }}"
+        newImagingHistory["indication"]= "{{ indication }}"
+        newImagingHistory["report"]= "{{ report }}"
+        newImagingHistory["visitEntry"] = "{{ visitEntry }}"
+
+        if (imgArr ==  "") {
+          console.log("ay")
+        } else {
+          for( var i = 0; i < imgArr.length; i ++ ) {
+            let newImagingUpload = {}
+            newImagingUpload["imagingEntry"] = "{{ id }}";
+            newImagingUpload["image"] = imgArr[i]
+            imagingUploads.push(newImagingUpload)
+          }
+        }
+        imagingHistory.push(newImagingHistory)
+        imagingHistory.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        // console.log(imagingHistory)
+        sessionStorage.setItem("imagingHistory",JSON.stringify(imagingHistory))
+        sessionStorage.setItem("imagingUploads",JSON.stringify(imagingUploads))
+      }
+    } else if ("{{visitEdited}}") {
+        let medicalHistory = JSON.parse(sessionStorage.getItem("medicalHistory"))
+        if ("{{ id }}"==="") {
+          console.log("no")
+        } else {
+          for(var i = 0; i < medicalHistory.length; i ++) {
+            if (medicalHistory[i]["id"] === "{{ id }}") {
+               medicalHistory[i]["admissionDate"] = "{{ admissionDate }}";
+               medicalHistory[i]["dischargeDate"]= "{{ dischargeDate }}";
+               medicalHistory[i]["summary"]= "{{ summary }}";
+               medicalHistory[i]["visitType"]= "{{ visitType }}";
+               medicalHistory[i]["letter"]= "{{ letter }}";
+               medicalHistory[i]["addToMedicalHistory"]= "{{ addToMedicalHistory }}";
+               medicalHistory.sort((a, b) => new Date(b.admissionDate).getTime() - new Date(a.admissionDate).getTime())
+               sessionStorage.setItem("medicalHistory",JSON.stringify(medicalHistory))
+               break; 
+            }
+        }
+        }
+     }
+    </script>
+  </script>
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+    <script src="{% static 'patientOnCall/edit-visit.js' %}"></script> 
+  </body>  
+  {% endblock %}
+

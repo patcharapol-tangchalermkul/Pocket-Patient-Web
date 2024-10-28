@@ -1,0 +1,60 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'patientOnCall/visit.css' %}"></link>
+</head>
+<body>
+  {% comment %} <div class="invisible" id="patient-data-box"></div> {% endcomment %}
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div class="p-3" id="main-visit-box">
+    <div class="p-3" id="main-current-visit-box">
+      <div id="main-current-visit-box-headers">
+        <h2 class="section-header">Healthcare Visit History:</h2>
+      </div>
+      <div class="info-table" id="main-current-visit-box-table">
+        <div class="info-table-item info-table-label date">Date</div>
+        <!-- <div class="info-table-item info-table-label date-of-admission">Date of Admission</div>
+        <div class="info-table-item info-table-label date-of-discharge">Date of Discharge</div> -->
+        <div class="info-table-item info-table-label discharge-summary">Discharge Summary</div>
+        <!-- <div class="info-table-item info-table-label">Consultant</div> -->
+        <div class="info-table-item info-table-label type-of-visit">Type of Visit</div>
+        <div class="info-table-item info-table-label lab-and-imaging">Consultant</div>
+        <div class="info-table-item info-table-label entry-letter">Letter</div>
+        <div class="info-table-item info-table-label lab-and-imaging">Lab and Imaging</div>
+      </div>
+      <div class="add-button-box">
+        <button class="add-button" id="add-visit" onclick="window.location.href">Add visit</button></div>
+      
+    </div>
+  </div>
+  <script>
+    var isCreated = "{{ visitCreated }}";
+    let medicalHistory = JSON.parse(sessionStorage.getItem("medicalHistory"))
+    medicalHistory.sort((a, b) => new Date(b.admissionDate).getTime() - new Date(a.admissionDate).getTime())
+    sessionStorage.setItem("medicalHistory",JSON.stringify(medicalHistory))
+    if ("{{ id }}"==="") {
+      console.log("no")
+    } else {
+      let newMedicalHistory = {}
+      newMedicalHistory["id"]= "{{ id }}";
+      newMedicalHistory["admissionDate"]= "{{ admissionDate }}";
+      newMedicalHistory["dischargeDate"]= "{{ dischargeDate }}";
+      newMedicalHistory["consultant"]= "{{ consultant }}";
+      newMedicalHistory["summary"]= "{{ summary }}";
+      newMedicalHistory["visitType"]= "{{ visitType }}"
+      newMedicalHistory["letter"]= "{{ letter }}"
+      newMedicalHistory["addToMedicalHistory"]= "{{ addToMedicalHistory }}"
+      medicalHistory.push(newMedicalHistory)
+      medicalHistory.sort((a, b) => new Date(b.admissionDate).getTime() - new Date(a.admissionDate).getTime())
+      // // console.log(medicalHistory)
+      sessionStorage.setItem("medicalHistory",JSON.stringify(medicalHistory))
+    }
+  </script>
+  <script src="{% static 'patientOnCall/visit.js' %}"></script>
+</body>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+  <html>
+    <head>
+        <title>Welcome</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="Patient On Call">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'patientOnCall/index.css' %}"></link>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+    <body>
+      <form class="search-bar container-fluid vh-100 d-flex flex-column align-items-center justify-content-center" id="patient-search-form">
+        <h1 class="display-1">Patient Search</h1>
+        <div class="p-3 search-patient container-fluid d-flex justify-content-center input-group">
+          <input class="w-50 p-3" type="text" name="patient-id" id="patient-id" placeholder="Patient's ID" aria-describedby="basic-addon1"></input>
+        </div>
+        <div class="p-3 search-patient container-fluid justify-content-center input-group">
+          <input class="w-50 p-3" type="text" name="patient-name" id="patient-name" placeholder="Patient's Full Name" aria-describedby="basic-addon2"></input>
+        </div>
+        <div class="p-3 search-patient container-fluid text-center d-flex justify-content-evenly">
+          <input class="btn btn-lg" type="submit" value="Go" id="patient-search-submit">
+          <script type="text/javascript"></script>
+        </div>
+      </form>
+      <div class="invisible" id="waiting-for-confirmation-box">
+        <h1>waiting for patient confirmation</h1>
+        <div class="loading-animation-box d-flex">
+          <div class="loading-dot" id="loading-dot-1"></div>
+          <div class="loading-dot" id="loading-dot-2"></div>
+          <div class="loading-dot" id="loading-dot-3"></div>
+        </div>
+        <button id="waiting-for-confirmation-cancel-btn">cancel</button>
+      </div>
+      <div class="status-notification-box">
+        <div class="status-notification d-flex justify-content-center align-items-center">
+          <div class="status-text">
+          </div>
+        </div>
+      </div>
+    
+      <script src="{% static 'patientOnCall/websocket_utils.js' %}"></script>
+      <script src="{% static 'patientOnCall/index.js' %}"></script>
+    </body>
+  </html>

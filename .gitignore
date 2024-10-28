@@ -1,0 +1,20 @@
+# Ignore virtual environment folder
+env/
+
+.env
+
+
+staticfiles/
+
+patientoncall_api/__pycache__/
+patientoncall_api/migrations/__pycache__
+patientOnCall/__pycache__
+patientOnCall/migrations/__pycache__
+drp39/__pycache__
+
+db.sqlite3
+
+
+#Ignore DS_Store
+.DS_Store
+

@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+  <html>
+    <head>
+        <title>Welcome</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="Patient On Call">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'patientOnCall/base.css' %}"></link>
+        <script src="{% static 'patientOnCall/redirect.js' %}"></script>
+        <script src="{% static 'patientOnCall/medication-map.js' %}"></script>
+    </head>
+    <body>
+      <div class="window-box">
+        <nav id="sidebar">
+          <div class="mb-4" id="home-btn-wrapper">
+              <img id="profile" src="{% static 'patientOnCall/assets/home-logo.png' %}" alt="home logo" >
+          </div>
+          <div class="sidebar-option" id="return-to-search-btn-wrapper">
+            <button class="" id="return-to-search-btn" onclick="window.location.href='/'">
+              return to search
+            </button>
+          </div>
+
+          <ul class="sidebar-components">
+              <li class="sidebar-option" id="patient-summary">
+                <a href="#">Patient Summary</a>
+              </li>
+              {% comment %} <li class="sidebar-option" id="personal-information">
+                <a href="#">Patient Personal Information</a>
+              </li> {% endcomment %}
+              <li class="sidebar-option" id="medication">
+                <a href="#">Medication</a>
+              </li>
+              <li class="sidebar-option" id="visit-history">
+                <a href="#">Healthcare Visit History</a>
+              </li>
+              <li class="sidebar-option" id="lab-history">
+                <a href="#">Lab History</a>
+              </li>
+              <li class="sidebar-option" id="imaging-history">
+                <a href="#">Imaging History</a>
+              </li>
+              <li class="sidebar-option" id="patient-diary">
+                <a href="#">Patient Diary</a>
+              </li>
+          </ul>
+
+          <div class="invisible" id="disclaimer-note">
+            DISCLAIMER: This patient only disclosed selected medical data.
+            Please seek necessary clarification from the patient.
+          </div>
+        </nav>
+        <script src="{% static 'patientOnCall/websocket_utils.js' %}"></script>
+        <script src="{% static 'patientOnCall/base.js' %}"></script>
+        <div class="main-box">
+          {% block content %} {% endblock %} 
+        </div>
+      </div>
+    </body>
+  </html>

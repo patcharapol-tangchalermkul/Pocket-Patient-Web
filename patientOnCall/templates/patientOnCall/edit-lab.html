@@ -1,0 +1,50 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+   <link rel="stylesheet" href="{% static 'patientOnCall/edit-lab.css' %}"></link>  
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+</head>
+<body> 
+  {% comment %} <div class="invisible" id="patient-data-box"></div> {% endcomment %}
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div class="back-button-box">
+    <a id="back-to-lab-type" href="">
+      <button class="green-btn">back</button>
+    </a>
+  </div>
+
+  <h4 class="section-header"></h4>
+  <div class="pb-5 add-entry-form" >
+    <div class="add-history pt-1">
+        <label class="mr-2" for="entry-report-date">Date of Report:</label>
+        <p id="entry-date" type="date"></p>
+    </div>
+    <div class="add-history pt-1">
+        <label for="entry-lab-type">Lab Type:</label>
+        <p id="entry-lab-type"></p>   
+    </div>
+    <div class="add-history pt-1">
+        <label for="entry-report">Lab Report:</label>
+        <!-- <input class="add-option" type="submit" id="add-report" value="Upload Report"> -->
+        <!-- <a id="entry-report"></a>    -->
+        <div id="entry-report"></div>
+        <form id="upload-report-form" method="POST" action="" enctype ="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="report" id="report-upload">
+            <input type="submit" value="Upload Report"></input>
+        </form>
+    </div>
+   </div>
+  
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+    <script src="{% static 'patientOnCall/edit-lab.js' %}"></script> 
+  </body>  
+  {% endblock %}

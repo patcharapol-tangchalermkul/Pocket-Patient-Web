@@ -1,0 +1,79 @@
+.medication-box {
+  padding-top: 2em;
+}
+
+#main-medication-box {
+  overflow-y: scroll;
+}
+
+#main-current-medication-box {
+  /* max-height: 40vh; */
+  margin-bottom: 1em;
+}
+
+
+#main-current-medication-box-headers {
+  display: flex;
+  align-items: center;
+}
+
+.medication-box h2 {
+  flex: 4;
+  margin-bottom: 0 !important;
+  text-align: left;
+}
+
+#main-current-medication-box button {
+  flex: 1;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+#main-current-medication-box button {
+  font-size: 1.3em;
+  flex: 1;
+  margin: 0 1%;
+  color: white;
+  border-width: 0;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,.5);
+}
+
+#main-current-medication-box-headers button {
+  height: 40px;
+  width: 100%;
+}
+
+.main-medication-box-table {
+  grid-template-columns: 1fr 2fr 1fr 1fr 2fr 1fr 2fr 1fr;
+}
+
+#print-button {
+  background-color: #E27CA1;
+}
+
+#prev-button {
+  background-color: #A1DADE;
+}
+
+.info-table-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.by-patient {
+  padding: 0 5px;
+  background-color: var(--light-red-colour);
+  margin: 5px 0;
+  border-radius: 7px;
+  font-weight: 500;
+}
+
+.by-doctor {
+  padding: 0 5px;
+  background-color: var(--info-bg-color);
+  margin: 5px 0;
+  border-radius: 7px;
+  font-weight: 500;
+}

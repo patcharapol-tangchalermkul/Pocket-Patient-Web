@@ -1,0 +1,23 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'patientOnCall/patient-diary-categories.css' %}"></link>
+</head>
+<body>
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div id="main-patient-diary-categories-box">
+    <div id="main-current-visit-box-headers">
+      <h2 class="section-header">Patient Diary Categories</h2>
+    </div>
+    <div class="p-3" id="categories-grid-box">
+    </div>
+    <div class="add-button-box" id="add-category-button-box"><button id="add-category-button">Add Category</button></div>
+  </div>
+  <script src="{% static 'patientOnCall/patient-diary-categories.js' %}"></script>
+</body>
+{% endblock %}

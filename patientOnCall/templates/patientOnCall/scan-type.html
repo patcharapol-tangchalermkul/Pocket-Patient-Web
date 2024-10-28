@@ -1,0 +1,98 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'patientOnCall/scan-type.css' %}"></link>
+</head>
+<body>
+  {% comment %} <div class="invisible" id="patient-data-box"></div> {% endcomment %}
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div class="back-button-box" id="back-to-visit">
+    <a href="/imaging/">
+      <button class="green-btn" id="back-to-visit">back</button>
+    </a>
+  </div>
+  <div class="p-3" id="main-visit-box">
+    <div class="p-3" id="main-current-visit-box">
+      <div id="main-current-visit-box-headers">
+        <h2 class="section-header"></h2>
+      </div>
+      <input type="text" id="region-filter" onkeyup="" placeholder="Filter by region..">
+      <div class="imaging-table" id="main-current-visit-box-table">
+        <div class="info-table-item info-table-label date">Date of Report</div>
+        <div class="info-table-item info-table-label region">Region</div>
+        <div class="info-table-item info-table-label indication">Indication</div>
+        <div class="info-table-item info-table-label imaging">Report</div>
+        <div class="info-table-item info-table-label imaging-scans">Images</div>
+      </div>
+      <div class="add-button-box">
+        <button class="add-button" id="add-imaging" onclick="window.location.href">Add Imaging</button>
+      </div>
+      
+    </div>
+  </div>
+  <script>
+    // var isCreated = "{{ created }}"
+    // console.log(isCreated)
+    let imagingHistory = JSON.parse(sessionStorage.getItem("imagingHistory"))
+    let imagingUploads = JSON.parse(sessionStorage.getItem("imagingUploads"))
+    imagingHistory.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    sessionStorage.setItem("imagingHistory",JSON.stringify(imagingHistory))
+    // var idList = []
+    // for(var i = 0; i < medicalHistory.length; i++) {
+    //   console.log(medicalHistory[i]["id"])
+    //   idList.push(medicalHistory[i]["id"])
+    //   console.log("{{id}}" === medicalHistory[i]["id"])
+    // }
+    // console.log("{{id}}" === medicalHistory[i]["id"])
+    if ("{{ id }}"==="") {
+      console.log("no")
+    } else {
+      let newImagingHistory = {}
+      // console.log("{{ id }}")
+      // console.log("{{ image }}")
+
+      var imgURLs = "{{ image }}"
+      const imgArr = imgURLs.split(',')
+      // console.log(imgArr)
+      for(var i = 0; i < imgArr.length; i++)
+        {
+          imgArr[i] = imgArr[i].replace("&#x27;", "");
+          imgArr[i] = imgArr[i].replace("&#x27;", "");
+          imgArr[i] = imgArr[i].replace("[", "");
+          imgArr[i] = imgArr[i].replace("]", "");
+          imgArr[i] = imgArr[i].replace(" ", "");
+        }
+    
+      // console.log(imgArr)
+      newImagingHistory["id"]= "{{ id }}";
+      newImagingHistory["date"]= "{{ date }}";
+      newImagingHistory["scanType"]= "{{ scanType }}";
+      newImagingHistory["region"]= "{{ region }}"
+      newImagingHistory["indication"]= "{{ indication }}"
+      newImagingHistory["report"]= "{{ report }}"
+
+      if (imgArr ==  "") {
+        console.log("ay")
+      } else {
+        for( var i = 0; i < imgArr.length; i ++ ) {
+          let newImagingUpload = {}
+          newImagingUpload["imagingEntry"] = "{{ id }}";
+          newImagingUpload["image"] = imgArr[i]
+          imagingUploads.push(newImagingUpload)
+        }
+      }
+      imagingHistory.push(newImagingHistory)
+      imagingHistory.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      // console.log(imagingHistory)
+      sessionStorage.setItem("imagingHistory",JSON.stringify(imagingHistory))
+      sessionStorage.setItem("imagingUploads",JSON.stringify(imagingUploads))
+    }
+  </script>
+  <script src="{% static 'patientOnCall/scan-type.js' %}"></script>
+</body>
+{% endblock %}

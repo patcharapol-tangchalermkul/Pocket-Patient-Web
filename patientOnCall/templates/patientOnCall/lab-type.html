@@ -1,0 +1,59 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'patientOnCall/lab-type.css' %}"></link>
+</head>
+<body>
+  {% comment %} <div class="invisible" id="patient-data-box"></div> {% endcomment %}
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div class="back-button-box">
+    <a id="back-button" href="/lab-history/">
+      <button class="green-btn">back</button>
+    </a>
+  </div>
+  <div class="p-3" id="main-visit-box">
+    <div class="p-3" id="main-current-visit-box">
+      <div id="main-current-visit-box-headers">
+        <h2 class="section-header"></h2>
+      </div>
+      <div class="lab-table" id="main-current-visit-box-table">
+        <div class="info-table-item info-table-label date">Date of Report</div>
+        <div class="info-table-item info-table-label report">Report</div>
+      </div>
+      <div class="add-button-box">
+        <button class="add-button" id="add-lab" onclick="window.location.href">Add Lab Report</button>
+      </div>
+      
+    </div>
+  </div>
+  <script>
+    // var isCreated = "{{ created }}"
+    // console.log(isCreated)
+    let labHistory = JSON.parse(sessionStorage.getItem("labHistory"))
+    labHistory.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    sessionStorage.setItem("labHistory",JSON.stringify(labHistory))
+
+    if ("{{ id }}"==="") {
+      console.log("no")
+    } else {
+      let newLabHistory = {}
+      newLabHistory["id"]= "{{ id }}";
+      newLabHistory["date"]= "{{ date }}";
+      newLabHistory["labType"]= "{{ labType }}";
+      newLabHistory["report"]= "{{ report }}"
+
+      labHistory.push(newLabHistory)
+      labHistory.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+      sessionStorage.setItem("labHistory",JSON.stringify(labHistory))
+
+    }
+  </script>
+  <script src="{% static 'patientOnCall/lab-type.js' %}"></script>
+</body>
+{% endblock %}

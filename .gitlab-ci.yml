@@ -1,0 +1,33 @@
+variables:
+  HEROKU_URL: "patientoncall.herokuapp.com/"
+
+stages:
+  - test
+  - deploy
+
+test-job:
+  image: python:3.10
+  stage: test
+  script:
+    - echo "Install requirements"
+    - pip3 install -r requirements.txt
+    - python manage.py makemigrations
+    - python manage.py migrate
+    - python manage.py test
+
+deploy-heroku-job:
+  image: ruby:3.1.2
+  stage: deploy
+  script:
+    - echo "Deploying to Heroku:"
+    # - curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+    - gem install dpl
+    - dpl --provider=heroku --app=patientoncall --api-key=$HEROKU_AUTH_TOKEN
+    # - heroku run python manage.py migrate --app patientoncall --api-key=$HEROKU_AUTH_TOKEN
+  only:
+    refs:
+      - tags
+      - master
+  environment:
+    name: deployment
+    url: HEROKU_URL

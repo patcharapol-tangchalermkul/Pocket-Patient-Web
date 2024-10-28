@@ -1,0 +1,127 @@
+:root {
+  --info-bg-color: #73C1D2;
+  --info-darker-bg-color: #239DB8;
+  --info-lighter-bg-color: #CBEDF4;
+  --dark-shade-color: rgba(0, 0, 0, 0.7);
+  --table-background-colour: #DBE2E3;
+  --error-darker-color: #C41E3A;
+  --error-lighter-color: #ffc1c1;
+}
+
+body {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.invisible {
+  display: none;
+}
+
+.visible {
+  visibility: visible;
+}
+
+#patient-search-submit {
+  background-color: var(--info-lighter-bg-color);
+  max-width: 160px;
+  width: 15%;
+  border: 3px solid var(--info-bg-color);
+}
+
+#patient-search-submit:hover {
+  background-color: var(--info-bg-color);
+}
+
+/* WAITING FOR PATIENT CONFIRMATION LOADING */
+
+#waiting-for-confirmation-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  color: black;
+}
+
+.loading-animation-box {
+  justify-content: center;
+  padding-top: 1em;
+}
+
+.loading-dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 1em;
+  border-radius: 50%;
+  background-color: black;
+  animation-name: load-dot;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+#loading-dot-2 {
+  animation-delay: .5s;
+}
+
+#loading-dot-3 {
+  animation-delay: 1s;
+}
+
+@keyframes load-dot {
+  0% {background-color: black;}
+  50% {background-color: white;}
+  100% {background-color: black;}
+}
+
+#waiting-for-confirmation-cancel-btn {
+  margin-top: 1.7em;
+  background-color: var(--error-lighter-color);
+  color: var(--error-darker-color);
+  font-weight: 400;
+  font-size: 1.2rem;
+  border: 2px solid var(--error-darker-color);
+  border-radius: 12px;
+  padding: 0 1em;
+}
+
+/* STATUS NOTIFICATION */
+
+.status-notification-box {
+  width: 100%;
+  position: absolute;
+  top: 80%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+}
+
+.status-notification {
+  width: 40%;
+  height: 60px;
+  border-radius: 20px;
+  background-color: var(--error-lighter-color);
+}
+
+.status-text {
+  color:var(--error-darker-color);
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
+.fade-out-animation {
+  -webkit-animation: fadeOut 1s;
+  animation: fadeOut 6s;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeOut {
+  0% { opacity: 1;}
+  90% { opacity: 1;}
+  100% { opacity: 0;}
+}  
+@keyframes fadeOut {
+  0% { opacity: 1;}
+  90% { opacity: 1;}
+  100% { opacity: 0;}
+}

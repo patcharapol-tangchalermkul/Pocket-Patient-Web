@@ -1,0 +1,52 @@
+.scan-name{
+    width: 45%;
+    position: relative;
+    height: 10vh; 
+    background-color: #239DB8;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    color: white; 
+    font-weight: bold;
+    font-size: x-large;
+    padding: 2.5vh;
+    box-shadow: 2px 2px 4px var(--dark-shade-color);
+}
+/* 
+.dropdown {
+    width: 45%; 
+    margin-left: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    width: 100%; 
+    margin-left: 25px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+
+.dropdown:hover .dropdown-content {display: block;} */
+
+.scan-name:hover {background-color: #A1DADE;}
+
+

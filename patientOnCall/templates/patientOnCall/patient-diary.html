@@ -1,0 +1,32 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+  <title>Patient Diary</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'patientOnCall/patient-diary.css' %}">
+</head>
+<body>
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div id="main-patient-diary-box">
+    <div id="main-current-visit-box-headers">
+      <div class="back-button-box">
+        <a href="/patient-diary-categories/">
+          <button class="green-btn">back</button>
+        </a>
+      </div>
+      <h2 class="section-header">Patient Diary</h2>
+      <h3 class="section-header" id="category-label"></h3>
+    </div>
+    <div class="info-table" id="main-patient-diary-box-table">
+      <div class="read-by-doctor-indicator-col invisible">*</div>
+      <div class="info-table-item info-table-label diary-date">Date</div>
+      <div class="info-table-item info-table-label diary-content" id="info-table-content-title">Content</div>
+    </div>
+  </div>
+  <script src="{% static 'patientOnCall/patient-diary.js' %}"></script>
+</body>
+{% endblock %}

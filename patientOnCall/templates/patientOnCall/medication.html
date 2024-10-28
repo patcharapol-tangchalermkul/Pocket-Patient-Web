@@ -1,0 +1,51 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'patientOnCall/medication.css' %}"></link>
+</head>
+<body>
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div class="p-3" id="main-medication-box">
+    <div class="p-3 medication-box" id="main-current-medication-box">
+      <div id="main-current-medication-box-headers">
+        <h2 class="section-header">Current Medications:</h2>
+      </div>
+      <div class="info-table main-medication-box-table" id="main-current-medication-box-table">
+        <div class="info-table-item info-table-label">Drug</div>
+        <div class="info-table-item info-table-label">Dose & Frequency</div>
+        <div class="info-table-item info-table-label">Start Date</div>
+        <div class="info-table-item info-table-label">End Date</div>
+        <div class="info-table-item info-table-label">Duration</div>
+        <div class="info-table-item info-table-label">Route</div>
+        <div class="info-table-item info-table-label">Comments</div>
+        <div class="info-table-item info-table-label">Submitted by</div>
+      </div>
+      <div class="main-current-medication-foot-note">
+        last medication date: 20/06/2023
+      </div>
+      <div class="add-button-box"><button id="edit-medication" class="add-button">Edit medication</button></div>
+    </div>
+    <div class="p-3 medication-box" id="main-past-medication-box">
+      <div id="main-current-medication-box-headers">
+        <h2 class="section-header">Previous Medications:</h2>
+      </div>
+      <div class="info-table main-medication-box-table" id="main-previous-medication-box-table">
+        <div class="info-table-item info-table-label">Drug</div>
+        <div class="info-table-item info-table-label">Dose & Frequency</div>
+        <div class="info-table-item info-table-label">Start Date</div>
+        <div class="info-table-item info-table-label">End Date</div>
+        <div class="info-table-item info-table-label">Duration</div>
+        <div class="info-table-item info-table-label">Route</div>
+        <div class="info-table-item info-table-label">Comments</div>
+        <div class="info-table-item info-table-label">Submitted by</div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'patientOnCall/medication.js' %}"></script>
+</body>
+{% endblock %}

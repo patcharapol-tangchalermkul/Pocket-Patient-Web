@@ -1,0 +1,41 @@
+#lab-history-and-presentation-box {
+  /* height: 40vh; */
+  width: 100%;
+  padding-bottom: 0.5em; 
+}
+
+#main-lab-history-box {
+  width: 100%;
+}
+
+#main-lab-history-box ul {
+  list-style-type: none;
+  max-width: 90%;
+  height: 20vh;
+}
+
+.lab-history-entries {
+  margin-left: 5%;
+  height: 20vh;
+}
+
+
+.lab-history-entry {
+  background-color: var(--info-darker-bg-color);
+  box-shadow: 2px 2px 4px var(--dark-shade-color);
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: x-large;
+  padding: 5rem; 
+  padding-bottom: 1rem;
+  padding-top: 1rem; 
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.lab-history-entry:hover{
+  background-color: var(--info-bg-color);
+}
+
+  
+ 

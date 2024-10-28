@@ -1,0 +1,90 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+   <link rel="stylesheet" href="{% static 'patientOnCall/add-visit.css' %}"></link>  
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+</head>
+<body> 
+  {% comment %} <div class="invisible" id="patient-data-box"></div> {% endcomment %}
+  <div class="container-fluid p-3 mb-3 patient-identity">
+    <h1 id="patient-name"></h1>
+    <h2 id="patient-id"></h2>
+  </div>
+  <div class="back-button-box">
+    <a id="back-button" href="">
+      <button class="green-btn">back</button>
+    </a>
+  </div>
+
+  <h4 class="section-header">Visit Entry:</h4>
+    <form action="" class="add-entry-form" id="patient-medical-history-add-entry" method="POST" enctype ="multipart/form-data">
+      {% csrf_token %}
+      <div class="add-history pt-1">
+        <label for="entry-visit-type">Visit Type:</label>
+        <p class="form-control" id="entry-visit-type">{{form.visitType}}</p>   
+      </div>
+      <div class="add-history pt-1">
+        <label class="mr-2" for="entry-admission-date" id="admission-date-label" >Admission Date:</label>
+        <p class="form-control" id="entry-admission-date" type="date">{{form.admissionDate}}</p>
+      </div>
+      <div class="add-history pt-1" id="discharge-date-wrapper">
+        <label class="mr-2" for="entry-discharge-date">Discharge Date:</label>
+        <p class="form-control" id="entry-discharge-date" type="date">{{form.dischargeDate}}</p>
+      </div>
+      <div class="add-history pt-1">
+        <label for="entry-consultant">Consultant:</label>
+        <p>John Lee</p>   
+      </div>
+      <div class="add-history pt-1">
+        <label for="entry-practice-name">Name of practice:</label> 
+         <p>St Mary's Hospital</p>  
+      </div>
+      <div class="add-history pt-1">
+        <label for="entry-address">Address of practice:</label> 
+          <p>12 Smith Street, AB 321 London.</p>  
+      </div>
+      <div class="add-history pt-1">
+        <label for="entry-summary">Summary:</label>
+        <p class="form-control" id="entry-summary">{{form.summary}}</p>   
+      </div>
+      <div class="add-history pt-1">
+        <label for="entry-letter">Upload Letter:</label>
+        <a id="entry-letter-link"></a>
+        <p class="form-control" id="entry-letter">{{form.letter}}</p>   
+      </div>
+      <!-- <div class="add-history pt-1">
+        <label for="entry-lab-report">Upload Lab Reports:</label>  
+        <p class="form-control" name="entry-lab-report"></p>   
+      </div> -->
+      
+      <div class="add-history pt-1">
+        <p id="add-to-medical-history">Add discharge summary to medical history: {{form.addToMedicalHistory}}</p>   
+      </div>
+    </form> 
+    
+    <!-- <div class="add-entry-form add-history pt-1">
+      <label for="entry-lab-report">Lab Reports:</label>
+      <p class="form-control" name="entry-lab-report"></p>    
+      <input class="add-option" type="submit" id="add-lab" value="Add Lab">
+      <div id="entry-lab-histories"></div>
+    </div>
+    <div class="add-entry-form add-history pt-1">
+      <label for="entry-imaging-report">Imaging Reports:</label>
+       <button class="edit-entry" id="add-imaging">Add Imaging</button>   
+      <input class="add-option" type="submit" id="add-imaging" value="Add Imaging">
+      <div id="entry-imaging-histories"></div>
+    </div> -->
+
+    <div class="pb-5 add-entry-form" id="add-button-wrapper">
+      <input class="add-button" type="submit" value="Save" form="patient-medical-history-add-entry" id="add-visit"/>
+    </div>
+    
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+    <script src="{% static 'patientOnCall/edit-visit-view.js' %}"></script> 
+  </body>  
+  {% endblock %}

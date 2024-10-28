@@ -1,0 +1,78 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'patientOnCall/info.css' %}"></link>
+</head>
+<body>
+  <div class="personal">
+    <div class="patient-photo"> 
+    </div>
+    <div class="container-fluid p-3 mb-3">
+      <h1 id="patient-name"></h1>
+      <h3 id="patient-id"></h3>
+      <!-- <h3 id="patient-age"></h3>
+      <h3 id="patient-address"></h3> -->
+      <div id="allergies-box">
+        <h4 id="allergies">Drug Allergies: NKDA </h4>
+      </div>
+    </div>
+  </div>
+  <div id="past-medical-history-and-presentation-box">
+    <div class="p-3" id="main-past-medical-history-box">
+      <h2 class="section-header">Past Medical History:</h2>
+      <ul class="p-3 m-0 mb-3" id="past-medical-history-entries"></ul>
+    </div>
+  </div>
+  <div class="p-3" id="main-current-medication-box">
+    <div class="p-3 medication-box" id="main-current-medication-box">
+      <div id="main-current-medication-box-headers">
+        <h2 class="section-header">Current Medications:</h2>
+      </div>
+      <div class="info-table main-medication-box-table" id="main-current-medication-box-table">
+        <div class="info-table-item info-table-label">Drug</div>
+        <div class="info-table-item info-table-label">Dose & Frequency</div>
+        <div class="info-table-item info-table-label">Start Date</div>
+        <div class="info-table-item info-table-label">End Date</div>
+        <div class="info-table-item info-table-label">Duration</div>
+        <div class="info-table-item info-table-label">Route</div>
+        <div class="info-table-item info-table-label">Comments</div>
+        <div class="info-table-item info-table-label">Submitted by</div>
+      </div>
+      <div class="main-current-medication-foot-note">
+        last medication date: 20/06/2023
+      </div>
+    </div>
+  <!-- <h4>Add New Medical History</h4>
+  <form class="add-entry-form d-flex flex-row justify-content-between" id="patient-medical-history-add-entry">
+    <div class="add-history pt-1">
+      <label class="mr-2" for="entry-admission-date">Admission Date</label>
+      <input type="date"  name="entry-admission-date" id="entry-admission-date"></input>
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-discharge-date">Dischage Date</label>
+      <input type="date" name="entry-discharge-date" id="entry-discharge-date"></input>
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-summary">Summary</label>
+      <input type="text" name="entry-summary" id="entry-summary"></input>
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-consultant">Consultant</label>
+      <input type="text" name="entry-consultant" id="entry-consultant"></input>
+    </div>
+    <div class="add-history pt-1">
+      <label for="entry-visit-type">Visit Type</label>
+      <select name="entry-visit-type" id="entry-visit-type">
+        <option value="Hospital Visit" selected>Hospital Visit</option>
+        <option value="GP Consultation">GP Consultation</option>
+      </select>
+    </div>
+    <div class="add-history">
+      <input class="btn btn-primary" type="submit" value="Submit" id="entry-submit">
+    </div>
+  </form> -->
+  <script src="{% static 'patientOnCall/info.js' %}"></script>
+</body>
+{% endblock %}

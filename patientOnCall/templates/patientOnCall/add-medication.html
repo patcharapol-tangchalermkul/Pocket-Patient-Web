@@ -1,0 +1,71 @@
+{% extends "patientOnCall/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'patientOnCall/add-medication.css' %}"></link>
+</head>
+<body>
+  <div class="back-button-box">
+    <a href="/edit-medication/">
+      <button class="green-btn">back</button>
+    </a>
+  </div>
+  <div id="main-box-wrapper">
+    <div id="add-new-medication-title">
+      <h1 class="p-3">Add New Medication</h1>
+    </div>
+    <form class="add-entry-form p-3 d-flex flex-column justify-content-between" id="medication-add-entry">
+        <div class="add-medication pt-1">
+        <label class="mr-2" for="medication-drug">Drug</label>
+        <input type="text"  name="medication-drug" id="medication-drug"></input>
+        </div>
+        <div class="add-medication pt-1">
+        <label for="medication-dosage">Dosage</label>
+        <input type="text" name="medication-dosage" id="medication-dosage"></input>
+        </div>
+        <div class="add-medication pt-1">
+        <label for="medication-start-date">Start Date</label>
+        <input type="date" name="medication-start-date" id="medication-start-date"></input>
+        </div>
+        <!-- <div class="add-medication pt-1">
+        <label for="medication-end-date">End Date</label>
+        <input type="date" name="medication-end-date" id="medication-end-date"></input>
+        </div> -->
+        <div class="add-medication pt-1" id="add-medication-duration">
+          <label>Duration</label>
+          <div id="duration-inputs">
+            <input type="number" name="medication-duration" id="medication-duration-num" required min="1" step="1"></input>
+            <select id="medication-duration-unit">
+              <option value="Day">Day(s)</option>
+              <option value="Week">Week(s)</option>
+              <option value="Month">Month(s)</option>
+              <option value="Year">Year(s)</option>
+            </select>  
+          </div>
+        </div>
+        <div class="add-medication pt-1">
+          <label for="medication-route">Route</label>
+          <div id="route-selection-box">
+            <select id="medication-route">
+              <option value="Oral">Oral</option>
+              <option value="Injection">Injection</option>
+              <option value="Nasal">Nasal</option>
+              <option value="Transdermal">Transdermal</option>
+              <option value="Otic">Otic</option>
+            </select>  
+          </div>
+        </div>
+        <div class="add-medication pt-1">
+          <label for="medication-comment">Comment</label>
+          <input type="text" name="medication-comment" id="medication-comment"></input>
+        </div>  
+        <div class="add-precription">
+        <input class="add-button" type="submit" value="Submit" id="medication-submit">
+        </div>
+    </form>
+  </div>
+    <script src="{% static 'patientOnCall/add-medication.js' %}"></script>
+
+</body>
+{% endblock %}
